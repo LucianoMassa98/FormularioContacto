@@ -2,7 +2,7 @@ const joi = require('joi');
 
 
 const name = joi.string();
-const surName = joi.number();
+const surName = joi.string();
 const email = joi.string().email()
 const message = joi.string();
 const subject = joi.string();
