@@ -19,8 +19,8 @@ const options = {
   }
 }
 
-app.use(cors(options));
-//app.use(cors());
+//app.use(cors(options));
+app.use(cors());
 routerApi(app);
 
 app.use(longError);
