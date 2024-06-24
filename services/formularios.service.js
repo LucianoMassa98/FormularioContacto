@@ -1,35 +1,19 @@
-const boom = require('@hapi/boom');
-const nodemailer = require('nodemailer');
-const {config} = require('../config/config');
+const boom = require("@hapi/boom");
+const nodemailer = require("nodemailer");
+const { config } = require("../config/config");
+
+const { EnviarEmail, enviarCorreoExitoso } = require("../modules/EnviarEmail");
 
 class FormulariosService {
   async create(data) {
+    // Enviar correo electrónico de verificación
+    await enviarCorreoExitoso(
+      config.emailEmisor,
+      "Formulario Suinfi",
+      JSON.stringify(data, null, 2)
+    );
 
-// Configurar el transporte
-let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: config.emailEmisor,
-        pass: config.password
-    }
-});
-
-// Configurar el contenido del correo
-let mailOptions = {
-    from: config.emailEmisor,
-    to: config.emailReceptor,
-    subject: 'Nuevo Contacto',
-    text: JSON.stringify(data, null, 2)
-};
-
-// Enviar el correo
-const rta= await transporter.sendMail(mailOptions);
-if (!rta) {
-    throw boom.notFound("No se pudo enviar los datos de contacto");
-}
-return true;
-
+    return true;
   }
-
 }
 module.exports = FormulariosService;
