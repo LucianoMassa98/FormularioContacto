@@ -6,6 +6,7 @@ const { EnviarEmail, enviarCorreoExitoso } = require("../modules/EnviarEmail");
 
 class FormulariosService {
   async create(data) {
+    console.log("aquiii");
     // Enviar correo electrónico de verificación
     await enviarCorreoExitoso(
       config.emailEmisor,
