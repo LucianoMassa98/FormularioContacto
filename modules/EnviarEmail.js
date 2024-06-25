@@ -33,7 +33,7 @@ async function EnviarEmail(emailReceptor, asunto, mensaje) {
   return { message: "El envio de correo fallo!!! ", value: false };;
 }
 async function enviarCorreoExitoso(emailReceptor, asunto, mensaje) {
-  console.log(emailReceptor, asunto, mensaje);
+
   let transporter = nodemailer.createTransport({
     host: 'smtp.hostinger.com',
     port: 465,

@@ -6,15 +6,14 @@ const { EnviarEmail, enviarCorreoExitoso } = require("../modules/EnviarEmail");
 
 class FormulariosService {
   async create(data) {
-    console.log("aquiii");
+
     // Enviar correo electrónico de verificación
-    await enviarCorreoExitoso(
+    const rta = await enviarCorreoExitoso(
       config.emailEmisor,
       "Formulario Suinfi",
       JSON.stringify(data, null, 2)
     );
-
-    return true;
+    return rta;
   }
 }
 module.exports = FormulariosService;
