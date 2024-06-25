@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const { config } = require('../config/config'); // Asegúrate de tener un archivo config.js con la configuración de correo
 
 async function EnviarEmail(emailReceptor, asunto, mensaje) {
-  console.log("previo transporter");
   // Configurar el transporte
   let transporter = nodemailer.createTransport({
     host: 'smtp.hostinger.com',
@@ -13,10 +12,6 @@ async function EnviarEmail(emailReceptor, asunto, mensaje) {
       pass: config.password,
     },
   });
-
-  console.log("paso transporter");
-  console.log(config.password);
-
   // Configurar el contenido del correo
   let mailOptions = {
     from: config.emailEmisor,
@@ -24,13 +19,10 @@ async function EnviarEmail(emailReceptor, asunto, mensaje) {
     subject: asunto,
     text: mensaje
   };
-  console.log(mailOptions);
-  // Enviar el correo
   const rta = await transporter.sendMail(mailOptions);
 
-  console.log('send email');
   if (rta) { return { message: "Correo enviado exitosamente!!!", value: true }; }
-  return { message: "El envio de correo fallo!!! ", value: false };;
+  return { message: "El envio de correo fallo!!! ", value: false, rta: rta };;
 }
 async function enviarCorreoExitoso(emailReceptor, asunto, mensaje) {
 
