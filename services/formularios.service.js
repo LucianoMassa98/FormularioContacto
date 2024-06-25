@@ -8,7 +8,7 @@ class FormulariosService {
   async create(data) {
 
     // Enviar correo electrónico de verificación
-    const rta = await enviarCorreoExitoso(
+    const rta = await EnviarEmail(
       config.emailReceptor,
       "Formulario Suinfi",
       JSON.stringify(data, null, 2)
